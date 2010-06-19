@@ -21,7 +21,7 @@ class Iphone::ProjectsController < ApplicationController
         :conditions => cond.conditions)
     end
     
-    # TODO : sory need be DESC
+    # TODO : sort need be DESC
   end
   
   private

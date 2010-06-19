@@ -1,0 +1,15 @@
+<div id="timelog-details" class="current">
+	 <h1>New Issue | <%=h @project.name %></h1>
+	 <%= link_to("Back", iphone_project_path(@project), :class => "back") %>
+	 <% form_for @issue , :url => iphone_project_issues_path(@project) do |f| -%>
+		<ul class="edgetoedge">
+	   		<li><%= f.text_field :subject, :placeholder => "Subject", :size => 10 %> </li>
+			<li><%= f.select :tracker_id, @project.trackers.collect {|t| [t.name, t.id]}, :required => true %> </li>
+		
+			<li><%= f.text_field :description, :placeholder => "Description", :size => 10 %> </li>
+			<li>
+	            <%= submit_tag l(:button_save) %>
+	        </li>
+		</ul>
+	 <% end -%>
+</div>

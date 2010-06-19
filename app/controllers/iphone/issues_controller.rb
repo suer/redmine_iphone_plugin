@@ -26,6 +26,21 @@ class Iphone::IssuesController < ApplicationController
     @journals.each_with_index {|j,i| j.indice = i+1}
     @journals.reverse! if User.current.wants_comments_in_reverse_order?
   end
+  
+  def new
+    @issue = @project.issues.build
+  end
+  
+  def create
+    @issue = @project.issues.build(params[:issue])
+    @issue.author_id = User.current.id
+    if @issue.save
+      flash[:notice] = l(:notice_successful_update)
+      redirect_to iphone_project_issues_path(@project, :tracker_id => @issue.tracker_id )
+    else
+      render :action => "new"
+    end
+  end
 
   private
   

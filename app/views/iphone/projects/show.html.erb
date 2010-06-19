@@ -18,7 +18,7 @@
     <ul class="rounded">
         <li><%= l_hours(@total_hours) %><br></li>
         <li class="arrow">
-            <%= link_to(l(:label_new), {:controller => 'timelog', :action => 'new', :project_id => @project.id}) %>
+            <%= link_to(l(:label_new), new_iphone_project_issue_path(@project) ) %>
         </li>
         <li class="arrow">
             <%= link_to(l(:label_details), activity_iphone_project_path(@project) )%>
