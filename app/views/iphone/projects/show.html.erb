@@ -21,7 +21,7 @@
             <%= link_to(l(:label_new), {:controller => 'timelog', :action => 'new', :project_id => @project.id}) %>
         </li>
         <li class="arrow">
-            <%= link_to(l(:label_details), {:controller => 'timelog', :action => 'details', :project_id => @project.id}) %>
+            <%= link_to(l(:label_details), activity_iphone_project_path(@project) )%>
         </li>
     </ul>
     <% end %>

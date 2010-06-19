@@ -10,12 +10,25 @@ class Iphone::ProjectsController < ApplicationController
       @total_hours = TimeEntry.sum(:hours, :include => :project, :conditions => cond).to_f
     end
   end
+  
+  def activity
 
-private
-  def find_project
-    @project = Project.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    render_404
+    cond = ARCondition.new
+    cond << @project.project_condition(Setting.display_subprojects_issues?)
+
+    TimeEntry.visible_by(User.current) do
+      @entries = TimeEntry.find(:all, 
+        :include => [:project, :activity, :user, {:issue => :tracker}],
+        :conditions => cond.conditions)
+    end
   end
+
+  private
+
+    def find_project
+      @project = Project.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render_404
+    end
 
 end
