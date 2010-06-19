@@ -2,13 +2,9 @@
     <div class="toolbar">
         <h1>#<%= @issue.id %> <%= h(@issue.tracker) %>(<%= @issue.status.name %>)</h1>
         <% if !User.current.logged? %>
-        <a class="button slideup" id="infoButton" href="#login">Login</a>
+        	<a class="button slideup" id="infoButton" href="#login">Login</a>
         <% end %>
-        <% if @project %>
-        <%= link_to "Back", { :controller => "issues", :action => "index", :project_id => @project }, :class => "back" %>
-        <% else %>
-        <%= link_to "Back", "/iphone", :class => "back" %>
-        <% end %>
+        <%= link_to "Back", iphone_project_issues_path(@project), :class => "back" %>
     </div>
 
     <div class="info">
