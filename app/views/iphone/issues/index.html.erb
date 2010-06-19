@@ -5,19 +5,19 @@
         <a class="button slideup" id="infoButton" href="#login">Login</a>
         <% end %>
         <% if @project %>
-        <%= link_to "Back", { :controller => "projects", :action => "show", :id => @project }, :class => "back" %>
+        <%= link_to("Back", iphone_project_path(@project) ,:class => "back") %>
         <% else %>
-        <%= link_to "Back", "/iphone", :class => "back" %>
+        <%= link_to("Back", iphone_path , :class => "back") %>
         <% end %>
     </div>
     <% if @tracker %>
-    <h2>Issues &gt; <%= @tracker.name %></h2>
+    	<h2>Issues &gt; <%= @tracker.name %></h2>
     <% else %>
-    <h2>Issues</h2>
+    	<h2>Issues</h2>
     <% end %>
     <ul class="rounded">
         <% @issues.each do |issue| %>
-        <li class="arrow"><%= link_to issue.subject, :action => "show", :id => issue.id %></li>
+        	<li class="arrow"><%= link_to("##{issue.id}-#{issue.subject}", iphone_issue_path(issue)) %></li>
         <% end %>
     </ul>
 </div>

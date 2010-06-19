@@ -2,14 +2,14 @@
     <div class="toolbar">
         <h1><%=h @project.name %></h1>
         <% if !User.current.logged? %>
-        <a class="button slideup" id="infoButton" href="#login">Login</a>
+        	<a class="button slideup" id="infoButton" href="#login">Login</a>
         <% end %>
-        <%= link_to "Back", "/iphone", :class => "back" %>
+        <%= link_to( "Back", iphone_path , :class => "back") %>
     </div>
     <h2>Issues</h2>
     <ul class="rounded">
         <% @project.trackers.each do |tracker| %>
-        <li class="arrow"><%= link_to tracker.name, :controller => "iphone/issues", :action => "index", :project_id => @project, :tracker_id => tracker %> <small class="counter"><%= Issue.count(:conditions => {:tracker_id => tracker.id, :project_id => @project.id}) %></small></li>
+        <li class="arrow"><%= link_to(tracker.name, iphone_issues_path(:project_id => @project, :tracker_id => tracker ) )%> <small class="counter"><%= Issue.count(:conditions => {:tracker_id => tracker.id, :project_id => @project.id}) %></small></li>
         <% end %>
     </ul>
 

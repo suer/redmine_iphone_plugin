@@ -16,7 +16,7 @@
         <% if @projects.any? %>
             <% for project in @projects %>
             <li class="arrow">
-                <%= link_to "#{h(project.name)} #{textilizable(project.short_description, :project => project)}", :controller => 'iphone/projects', :action => 'show', :id => project %>
+                <%= link_to "#{h(project.name)} #{textilizable(project.short_description, :project => project)}", iphone_project_path(project) %>
             </li>
             <% end %>
         <% end %>
