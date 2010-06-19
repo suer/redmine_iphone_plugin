@@ -12,7 +12,6 @@ class Iphone::ProjectsController < ApplicationController
   end
   
   def activity
-
     cond = ARCondition.new
     cond << @project.project_condition(Setting.display_subprojects_issues?)
 
@@ -21,8 +20,10 @@ class Iphone::ProjectsController < ApplicationController
         :include => [:project, :activity, :user, {:issue => :tracker}],
         :conditions => cond.conditions)
     end
+    
+    # TODO : sory need be DESC
   end
-
+  
   private
 
     def find_project

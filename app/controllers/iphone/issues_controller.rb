@@ -16,9 +16,9 @@ class Iphone::IssuesController < ApplicationController
     end
 
     @assigned_issues = Issue.visible.open.find(:all,
-                                    :conditions => {:assigned_to_id => User.current.id},
-                                    :include => [ :status, :project, :tracker, :priority ],
-                                    :order => "#{IssuePriority.table_name}.position DESC, #{Issue.table_name}.updated_on DESC")
+                                               :conditions => {:assigned_to_id => User.current.id},
+                                               :include => [ :status, :project, :tracker, :priority ],
+                                               :order => "#{IssuePriority.table_name}.position DESC, #{Issue.table_name}.updated_on DESC")
   end
 
   def show
@@ -27,13 +27,13 @@ class Iphone::IssuesController < ApplicationController
     @journals.reverse! if User.current.wants_comments_in_reverse_order?
   end
 
-private
-  def find_issue
-    @issue = Issue.find(params[:id])
-  end
+  private
+  
+    def find_issue
+      @issue = Issue.find(params[:id])
+    end
 
-  def find_project
-    @project = Project.find(params[:project_id]) unless params[:project_id].blank?
-    @project = @issue.project if !@project && @issue
-  end
+    def find_project
+      @project = Project.find(params[:project_id])
+    end
 end
