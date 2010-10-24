@@ -29,11 +29,15 @@ class Iphone::IssuesController < ApplicationController
   
   def new
     @issue = @project.issues.build
+    unless params[:parent_issue_id].blank?
+      @parent_issue = Issue.find(params[:parent_issue_id])
+    end
   end
   
   def create
     @issue = @project.issues.build(params[:issue])
     @issue.author_id = User.current.id
+    @issue.parent_issue_id = params[:parent_issue_id] unless params[:parent_issue_id].blank?
     if @issue.save
       flash[:notice] = l(:notice_successful_update)
       redirect_to iphone_project_issues_path(@project, :tracker_id => @issue.tracker_id )

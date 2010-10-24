@@ -89,10 +89,13 @@
     </div>
 
     <ul class="rounded">
-        <li class="arrow"><%= link_to "Update Status", "#" %></li>
+      <% if User.current.allowed_to?(:manage_subtasks, @project) %>
+        <li class="arrow"><%= link_to "Add SubTask", {:action => 'new', :parent_issue_id => @issue} %></li>
+      <% end %>
+        <!--li class="arrow"><%= link_to "Update Status", "#" %></li>
         <li class="arrow"><%= link_to "Change Priority", "#" %></li>
         <li class="arrow"><%= link_to "Assign To...", "#" %></li>
         <li class="arrow"><%= link_to "Add Note", "#" %></li>
-        <li class="arrow"><%= link_to "Log time", "#" %></li>
+        <li class="arrow"><%= link_to "Log time", "#" %></li-->
     </ul>
 </div>
