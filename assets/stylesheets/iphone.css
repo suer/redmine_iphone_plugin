@@ -59,3 +59,7 @@
 #timelog-details .comment {
     font-size: 14px;
 }
+
+#jqt ul.child-project {
+  margin: 0px 0px 0px 5px;
+}

@@ -4,7 +4,7 @@ class IphoneController < ApplicationController
   layout "iphone"
 
   def index
-    @projects = Project.visible
+    @projects = Project.visible.select {|proj| proj.root?}
   end
 
   def login

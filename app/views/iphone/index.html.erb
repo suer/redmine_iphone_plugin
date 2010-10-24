@@ -14,10 +14,8 @@
 
     <ul class="rounded">
         <% if @projects.any? %>
-            <% for project in @projects %>
-            <li class="arrow">
-                <%= link_to "#{h(project.name)} #{textilizable(project.short_description, :project => project)}", iphone_project_path(project) %>
-            </li>
+            <% @projects.each do |project| %>
+              <%= render_project_hierarchy(project) %>
             <% end %>
         <% end %>
     </ul>
