@@ -1,0 +1,9 @@
+<p><strong><%=l(:label_subtask_plural)%></strong></p>
+
+<% if @issue.children.any? %>
+<% @issue.children.select {|c| c.visible? }.each do |child| %>
+<p>
+    <%= link_to_issue child%>
+</p>
+<% end %>
+<% end %>
