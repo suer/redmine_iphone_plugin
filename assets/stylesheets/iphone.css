@@ -63,3 +63,8 @@
 #jqt ul.child-project {
   margin: 0px 0px 0px 5px;
 }
+
+h3#issue-subject p {
+  font-size: 80%;
+  margin: 0;
+}

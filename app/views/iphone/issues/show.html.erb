@@ -20,7 +20,7 @@
     </div>
 
     <div class="<%= @issue.css_classes %> details">
-        <h3 id="issue-subject"><%=h @issue.subject %></h3>
+        <h3 id="issue-subject"><%= render_issue_subject_with_tree(@issue) %></h3>
         <table class="attributes" cellspacing="0">
         <tr>
             <th class="status"><%=l(:field_status)%>:</th><td class="status"><%= @issue.status.name %></td>
@@ -65,6 +65,11 @@
         <p><strong><%=l(:field_description)%></strong></p>
         <div class="wiki">
         <%= textilizable @issue, :description, :attachments => @issue.attachments %>
+        </div>
+
+        <hr />
+        <div id="subtasks">
+        <%= render :partial => 'subtasks' %>
         </div>
 
         <% if authorize_for('issue_relations', 'new') || @issue.relations.any? %>
