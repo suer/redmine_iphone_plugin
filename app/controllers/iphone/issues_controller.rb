@@ -6,6 +6,8 @@ class Iphone::IssuesController < ApplicationController
   before_filter :find_project
   helper :issues
   helper :journals
+  helper :custom_fields
+  helper :projects
 
   def index
     if params[:tracker_id]
