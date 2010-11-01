@@ -13,7 +13,7 @@
             <%= link_to(tracker.name, iphone_project_issues_path(@project, :tracker_id => tracker ) )%> 
             <small class="counter">
               <%= Issue.count(:include => :status,
-                              :conditions => {:tracker_id => tracker.id, :project_id => @project.id, "issue_statuses.is_closed" => true}) 
+                              :conditions => {:tracker_id => tracker.id, :project_id => @project.id, "issue_statuses.is_closed" => false}) 
               %>/<%= Issue.count(:conditions => {:tracker_id => tracker.id, :project_id => @project.id}) %>
             </small>
           </li>
