@@ -10,12 +10,23 @@ class Iphone::IssuesController < ApplicationController
   helper :projects
 
   def index
+    logger.info "++++++++++++++++++++++++++++++++++"
     if params[:tracker_id]
       @tracker = Tracker.find(params[:tracker_id])
-      @issues = @project.issues.all(:conditions => [ "tracker_id = ?", params[:tracker_id] ])
+      if params[:filter_status] == 'all'
+        @issues = @project.issues.all(:conditions => [ "tracker_id = ?", params[:tracker_id]])
+        logger.info "1++++++++++++++++++++++++++++++++++"
+      elsif params[:filter_status].blank? or params[:filter_status] == 'open'
+        @issues = @project.issues.all(:conditions => [ "tracker_id = ? and issue_statuses.is_closed = ?", params[:tracker_id], false])
+        logger.info "2++++++++++++++++++++++++++++++++++"
+      elsif params[:filter_status] == 'closed'
+        @issues = @project.issues.all(:conditions => [ "tracker_id = ? and issue_statuses.is_closed = ?", params[:tracker_id], true])
+        logger.info "3++++++++++++++++++++++++++++++++++"
+      end
     else
       @issues = @project.issues
     end
+    session[:filter_status] = params[:filter_status]
 
     @assigned_issues = Issue.visible.open.find(:all,
                                                :conditions => {:assigned_to_id => User.current.id},
