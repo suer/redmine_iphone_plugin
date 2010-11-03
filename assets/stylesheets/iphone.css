@@ -68,3 +68,19 @@ h3#issue-subject p {
   font-size: 80%;
   margin: 0;
 }
+
+#jqt .wiki ul {
+    border: none;
+    list-style-type: disc;
+    display: list-item;
+}
+
+#jqt .wiki ul li {
+    background: none;
+    color: #666;
+    font-size: 13px;
+    border: none;
+    padding: 0;
+    display: list-item;
+}
+
