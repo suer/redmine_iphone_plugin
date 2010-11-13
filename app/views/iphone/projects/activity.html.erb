@@ -10,7 +10,7 @@
             <% if entry.issue %>
             <p><%= link_to "##{entry.issue.id}", iphone_project_issue_path(@project, entry.issue)%></p>
             <% end %>
-            <p><%=h entry.activity %>, <%= html_hours("%.1f" % entry.hours) %> Hours</p>
+            <p><%=h entry.activity %>, <%= l(:label_f_hour, :value => html_hours("%.1f" % entry.hours)) %></p>
             <span class="user"><%=h entry.user %></span>
             <span class="comment"><%=h entry.comments %></span>
         </li>
