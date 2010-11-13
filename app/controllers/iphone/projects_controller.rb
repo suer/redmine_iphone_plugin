@@ -14,6 +14,7 @@ class Iphone::ProjectsController < ApplicationController
   def activity
     cond = ARCondition.new
     cond << @project.project_condition(Setting.display_subprojects_issues?)
+    cond << ["issue_id = ?", params[:issue_id]] if params[:issue_id]
 
     TimeEntry.visible_by(User.current) do
       @entries = TimeEntry.find(:all, 
