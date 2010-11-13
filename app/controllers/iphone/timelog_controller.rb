@@ -7,6 +7,7 @@ class Iphone::TimelogController < ApplicationController
 
   def new
     @project = Project.find(params[:project_id])
+    @issue = Issue.find(params[:issue_id]) if params[:issue_id]
 
     @time_entry = TimeEntry.new(:project => @project, :issue => @issue, :user => User.current, :spent_on => User.current.today)
   end
@@ -16,7 +17,9 @@ class Iphone::TimelogController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
-    @issue = Issue.find(params[:issue_id])       if params[:issue_id]
+    @issue = Issue.find(params[:issue_id]) if params[:issue_id]
+    logger.info "++++++++++++++++++++++++++"
+    logger.info params[:issue_id]
 
     @time_entry = TimeEntry.new(:project => @project, :issue => @issue, :user => User.current, :spent_on => User.current.today)
     @time_entry.attributes = params[:time_entry]
