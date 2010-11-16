@@ -84,3 +84,24 @@ h3#issue-subject p {
     display: list-item;
 }
 
+/* account */
+.user {
+    padding: 10px;
+    background: #fff;
+    color: #aaa;
+    line-height: 1.2;
+}
+
+#jqt #account .user ul {
+  background: #fff;
+  border: 0;
+  font-size: 12pt;
+}
+#jqt #account .user ul li {
+  background: #fff;
+  border: 0;
+}
+
+#jqt #account .user ul li a {
+  color: #11e;
+}
