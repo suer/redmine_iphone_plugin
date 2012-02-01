@@ -20,7 +20,7 @@ class Iphone::IssuesController < ApplicationController
         @issues = @project.issues.all(:conditions => [ "tracker_id = ? and issue_statuses.is_closed = ?", params[:tracker_id], true])
       end
     else
-      @issues = @project.issues
+      @issues = @project.issues.all(:order => "tracker_id ASC")
     end
     session[:filter_status] = params[:filter_status]
 
