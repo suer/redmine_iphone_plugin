@@ -19,15 +19,14 @@
           </li>
         <% end %>
 
-          <li class="arrow">
-            <%= link_to('All', iphone_project_issues_path(@project) )%>
-            <small class="counter">
-              <%= Issue.count(:include => :status,
-                              :conditions => {:project_id => @project.id, "issue_statuses.is_closed" => false})
-              %>/<%= Issue.count(:conditions => {:project_id => @project.id}) %>
-            </small>
-          </li>
-
+        <li class="arrow">
+          <%= link_to('All', iphone_project_issues_path(@project) )%>
+          <small class="counter">
+            <%= Issue.count(:include => :status,
+                            :conditions => {:project_id => @project.id, "issue_statuses.is_closed" => false})
+            %>/<%= Issue.count(:conditions => {:project_id => @project.id}) %>
+          </small>
+        </li>
     </ul>
 
     <% if @total_hours && User.current.allowed_to?(:view_time_entries, @project) %>
