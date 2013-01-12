@@ -24,8 +24,14 @@
       </ul>
     <% end %>
     <ul id="issue_list" class="rounded">
+				<% last_tracker = nil %>
         <% @issues.each do |issue| %>
-        	<li class="arrow"><%= link_to("##{issue.id}-#{issue.subject}", iphone_project_issue_path(@project,issue)) %></li>
+					<% if last_tracker != issue.tracker and !@tracker %>
+						<h2><%= h(issue.tracker) %></h2>
+					<% end %>
+
+        	<li class="arrow"><%= link_to("#{issue.subject}", iphone_project_issue_path(@project,issue)) %></li>
+				<% last_tracker = issue.tracker %>
         <% end %>
     </ul>
 </div>
